@@ -30,15 +30,14 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit,OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   isLodingRoute = false;
   title = 'polling';
   constructor(
     private dataService: DataService,
     private questionsService: QuestionsService,
     private usersService: UsersService,
-    private router: Router,
-    private changeRef: ChangeDetectorRef
+    private router: Router
   ) {
     this.router.events.subscribe((event: Event) => {
       switch (true) {
@@ -69,27 +68,25 @@ export class AppComponent implements OnInit,OnDestroy {
   usersSub!: Subscription;
   authedUserSub!: Subscription;
 
-
   ngOnInit() {
     this.questionsSub = this.questionsService.questionsList.subscribe();
     this.usersSub = this.usersService.usersList.subscribe();
-      this.initialQuestionsState = this.dataService
-        ._getQuestions()
-        .then((data) => {
-          const questionArray = Object.values(data) as Question[];
-          this.questionsService.setQuestions(questionArray);
-          return data;
-        });
-      this.initialUsersState = this.dataService._getUsers().then((data) => {
-        const usersArray = Object.values(data) as User[];
-        this.usersService.setUsers(usersArray);
+    this.initialQuestionsState = this.dataService
+      ._getQuestions()
+      .then((data) => {
+        const questionArray = Object.values(data) as Question[];
+        this.questionsService.setQuestions(questionArray);
         return data;
       });
-    
+    this.initialUsersState = this.dataService._getUsers().then((data) => {
+      const usersArray = Object.values(data) as User[];
+      this.usersService.setUsers(usersArray);
+      return data;
+    });
   }
   ngOnDestroy(): void {
     this.questionsSub.unsubscribe();
     this.usersSub.unsubscribe();
     this.authedUserSub.unsubscribe();
-    }
+  }
 }

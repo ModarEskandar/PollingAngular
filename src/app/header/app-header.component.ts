@@ -1,15 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
-import {
-  AfterViewChecked,
-  Component,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { User } from '../store/models/user.model';
 import { Store } from '@ngrx/store';
@@ -30,9 +21,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private store: Store<{ message: string }>,
-    private alertService: AlertService,
     private snackBar: MatSnackBar
   ) {}
 

@@ -1,5 +1,5 @@
 import { QuestionsComponent } from './questions/questions.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AddQuestionComponent } from './question/add-question/add-question.component';
@@ -10,11 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./questions/questions.module').then((q) => q.QuestionsModule),
-  // },
+
   { path: 'home', component: QuestionsComponent, canActivate: [AuthGuard] },
   { path: 'add', component: AddQuestionComponent, canActivate: [AuthGuard] },
   {

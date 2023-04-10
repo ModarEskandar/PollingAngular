@@ -1,7 +1,5 @@
 import { Question } from './../store/models/question.model';
 import { Injectable } from '@angular/core';
-import { Store } from '../store/store';
-import { DataService } from './data.service';
 import { BehaviorSubject, Observable, from, take, takeLast } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })

@@ -14,14 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { AddQuestionComponent } from './question/add-question/add-question.component';
 import { DataService } from './services/data.service';
 import { AuthGuard } from './services/auth-guard.service';
-import { StoreModule } from '@ngrx/store';
-import { questionReducer } from './store/reducers/question.reducer';
-import { counterReducer } from './store/reducers/count.reducer';
 import { LeadboardComponent } from './leadboard/leadboard.component';
-import { alertReducer } from './store/reducers/alert.reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -39,16 +34,9 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({
-      count: counterReducer,
-      alert: alertReducer,
-      question: questionReducer,
-    }),
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatProgressBarModule,
-
-    EffectsModule.forRoot([]),
   ],
   providers: [DataService, AuthService, AuthGuard],
   bootstrap: [AppComponent],

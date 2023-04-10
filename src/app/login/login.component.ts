@@ -1,12 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { User, IUser } from '../store/models/user.model';
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { AlertService } from './../services/alert.service';
