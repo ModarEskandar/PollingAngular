@@ -1,0 +1,10 @@
+<app-header></app-header>
+<!-- <div *ngFor="let question of questions$ | async">
+  {{ question.id }}
+</div>
+
+<button (click)="addQuestion()">Add Question</button> -->
+<mat-progress-bar *ngIf="isLodingRoute" color="accent" mode="indeterminate">
+</mat-progress-bar>
+<br />
+<router-outlet></router-outlet>

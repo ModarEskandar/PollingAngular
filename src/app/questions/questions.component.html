@@ -1,0 +1,107 @@
+<div class="d-flex align-items-center justify-content-center">
+  <div class="col-md-2" style="width: 36rem" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div class="col-md-2" style="width: 36rem" *ngIf="!isLoading">
+    <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          [ngClass]="{ active: isAnsweredTab }"
+          (click)="onChangeTab()"
+          >Answered Questions ({{ numOfAnswered }})</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          [ngClass]="{ active: !isAnsweredTab }"
+          (click)="onChangeTab()"
+          >Unanswered Questions ({{ numOfUnanswered }})</a
+        >
+      </li>
+    </ul>
+    <!-- Pills navs -->
+
+    <!-- Pills content -->
+    <div class="tab-content">
+      <div
+        *ngIf="isAnsweredTab"
+        class="tab-pane fade"
+        [ngClass]="{ 'show active': isAnsweredTab }"
+      >
+        <!-- <div *ngFor="let question of questions, let a as Object.keys(question)"> -->
+        <div
+          class="md-2"
+          *ngFor="let question of answeredQuestions; let i = index"
+        >
+          <div class="card w-100 mb-3">
+            <h5 class="card-header">{{ question.authorName }} Asks</h5>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <!-- <img [src]="'user avatar url'"> -->
+                  <img [src]="question.authorAvatarUrl" />
+                </div>
+                <div class="col-8">
+                  <h5 class="card-title">would you rather</h5>
+                  <p class="card-text">
+                    {{ question.question.optionOne.text }}
+                  </p>
+                  <p class="card-text">
+                    {{ question.question.optionTwo.text }}
+                  </p>
+                  <button
+                    class="btn btn-primary w-100"
+                    (click)="onViewPoll(question.question.id)"
+                  >
+                    view poll
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="!isAnsweredTab"
+        class="tab-pane fade"
+        [ngClass]="{ 'show active': !isAnsweredTab }"
+      >
+        <div *ngFor="let question of unansweredQuestions; let i = index">
+          <div class="card w-100 mb-3">
+            <h5 class="card-header">{{ question.authorName }} Asks</h5>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <!-- <img [src]="'user avatar url'"> -->
+                  <img [src]="question.authorAvatarUrl" />
+                </div>
+                <div class="col-8">
+                  <h5 class="card-title">would you rather</h5>
+                  <p class="card-text">
+                    {{ question.question.optionOne.text }}
+                  </p>
+                  <p class="card-text">
+                    {{ question.question.optionTwo.text }}
+                  </p>
+                  <button
+                    class="btn btn-primary w-100"
+                    (click)="onViewPoll(question.question.id)"
+                  >
+                    view poll
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pills content -->
+    </div>
+  </div>
+</div>

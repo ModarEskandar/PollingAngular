@@ -1,0 +1,119 @@
+<div class="d-flex align-items-center justify-content-center">
+  <div
+    class="col-md-2 d-flex align-items-center justify-content-center"
+    style="width: 36rem"
+    *ngIf="isLoading"
+  >
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="col-md-2" style="width: 36rem" *ngIf="!isLoading">
+    <div class="tab-content">
+      <!-- <div *ngFor="let question of questions, let a as Object.keys(question)"> -->
+      <div class="md-2">
+        <div class="card w-100">
+          <h5 class="card-header">Asked by: {{ authorInfo?.name }}</h5>
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <!-- <img [src]="'user avatar url'"> -->
+                <img [src]="authorInfo?.avatarURL" />
+              </div>
+              <div class="col-8" *ngIf="!isPolled">
+                <h5 class="card-title">would you rather</h5>
+                <form (ngSubmit)="onPoll(pollForm)" #pollForm="ngForm">
+                  <div
+                    class="radio mb-3"
+                    *ngFor="let option of options; let i = index"
+                  >
+                    <label>
+                      <input
+                        id="option"
+                        type="radio"
+                        name="option"
+                        [value]="option"
+                        [ngModel]="selectedChoise"
+                        [disabled]="selectedChoise!==''"
+                        required
+                      />
+                      {{ option }}
+                    </label>
+                  </div>
+
+                  <button
+                    class="btn btn-primary w-100"
+                    [disabled]="pollForm.form.invalid"
+                    type="submit"
+                  >
+                    view poll
+                  </button>
+                </form>
+              </div>
+              <div class="col-8" *ngIf="isPolled">
+                <h5 class="card-title">Result</h5>
+                <div
+                  class="card mb-2"
+                  [ngClass]="selectedChoiseIndex === 0 ? 'selected-option' : ''"
+                >
+                  <div class="card-body">
+                    <div>
+                      <p class="card-text">
+                        {{ question.optionOne.text }}
+                      </p>
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          aria-label="Example with label"
+                          [attr.aria-valuenow]="optionOneRate"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          [style.width]="optionOneRate + '%'"
+                        >
+                          {{ optionOneRate | number : "2.0-0" }}%
+                        </div>
+                      </div>
+                      <p>{{ optionOneVotes }} Out of {{ totalVotes }}</p>
+                    </div>
+                  </div>
+                  <div *ngIf="selectedChoiseIndex === 0" class="card-badge">
+                    Your Vote
+                  </div>
+                </div>
+                <div
+                  class="card mb-2"
+                  [ngClass]="selectedChoiseIndex === 1 ? 'selected-option' : ''"
+                >
+                  <div class="card-body">
+                    <div>
+                      <p class="card-text">
+                        {{ question.optionTwo.text }}
+                      </p>
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          aria-label="Example with label"
+                          [attr.aria-valuenow]="optionTwoRate"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          [style.width]="optionTwoRate + '%'"
+                        >
+                          {{ optionTwoRate | number : "2.0-0" }}%
+                        </div>
+                      </div>
+                      <p>{{ optionTwoVotes }} Out of {{ totalVotes }}</p>
+                    </div>
+                  </div>
+                  <div *ngIf="selectedChoiseIndex === 1" class="card-badge">
+                    Your Vote
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

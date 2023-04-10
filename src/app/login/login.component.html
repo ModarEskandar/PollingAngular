@@ -1,0 +1,42 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <div>
+              <h1 class="fw-bold mb-2 text-uppercase">
+                <img
+                  src="../assets/icon3.png"
+                  alt="App Logo"
+                  style="width: 50px"
+                  class="rounded-pill"
+                />Polling
+              </h1>
+              <p class="text-white-50 mb-5">Please sign in to continue</p>
+              <form (ngSubmit)="onLogin(signinForm)" #signinForm="ngForm">
+                <div class="form-outline form-white mb-4">
+                  <select ngModel name="username" required class="form-control">
+                    <option
+                      *ngFor="let username of usernames; let i = index"
+                      value="{{ username }}"
+                    >
+                      {{ username }}
+                    </option>
+                  </select>
+                </div>
+                <button
+                  class="btn btn-outline-light btn-lg px-5"
+                  type="submit"
+                  [disabled]="signinForm.form.invalid"
+                >
+                  Login
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

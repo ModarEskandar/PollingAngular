@@ -1,0 +1,55 @@
+<div class="d-flex align-items-center justify-content-center">
+  <div class="col-md-2" style="width: 36rem" *ngIf="isLoading">Loading...</div>
+  <div class="col-md-2" style="width: 36rem" *ngIf="!isLoading">
+    <div class="tab-content">
+      <!-- <div *ngFor="let question of questions, let a as Object.keys(question)"> -->
+      <div class="md-2">
+        <div class="card w-100 mb-2" *ngFor="let score of scores">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <img
+                  [src]="score.avatarUrl"
+                  style="width: 130px; height: 130px"
+                />
+              </div>
+              <div class="col-6">
+                <h5 class="card-title">{{ score.username }}</h5>
+                <div class="row">
+                  <div class="col-sm-8">Answerd Questions</div>
+                  <div class="col-sm-4 text-end">{{ score.answered }}</div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-8">Created Questions</div>
+                  <div class="col-sm-4 text-end">{{ score.asked }}</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card text-center w-100">
+                  <h5 class="card-header">Score</h5>
+                  <div class="card-body">
+                    <h1 class="card-title">
+                      {{ score.answered + score.asked }}
+                    </h1>
+                  </div>
+                </div>
+                <!-- <img [src]="'user avatar url'"> -->
+                <!-- <table class="table table-striped">
+                  <tr>
+                    Score
+                  </tr>
+                  <tr style="height: 100%">
+                    {{
+                      leadboardScore.answered + leadboardScore.asked
+                    }}
+                  </tr>
+                </table> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

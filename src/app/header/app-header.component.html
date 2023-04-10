@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="navbar-header">
+        <a class="nav-link" routerLink="/" class="navbar-brand"
+          ><img
+            src="../assets/icon3.png"
+            alt="App Logo"
+            style="width: 20px"
+            class="rounded-pill"
+          />{{ appTitle }}</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active"
+          >Home</a
+        >
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/add" routerLinkActive="active"
+          >New Question</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/leadboard" routerLinkActive="active"
+          >Leadboard</a
+        >
+      </li>
+
+      <!-- <li class="nav-item">
+        <a
+          class="nav-link alert alert-success"
+          role="alert"
+          *ngIf="message.type === 'info'"
+        >
+          This is a success alert—check it out!
+        </a>
+        <a
+          class="nav-link alert alert-danger"
+          role="alert"
+          *ngIf="message.type === 'error'"
+        >
+          This is a danger alert—check it out!
+        </a>
+        
+      </li> -->
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item" *ngIf="isAuthenticated">
+        <a class="nav-link" style="cursor: pointer" (click)="onLogout()"
+          ><img
+            [src]="avatarUrl"
+            alt="Avatar Logo"
+            style="width: 30px"
+            class="rounded-pill"
+          />
+          Hello {{ authedUser }} | Logout</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
